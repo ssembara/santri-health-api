@@ -22,6 +22,7 @@ app.get('/api', async (req, res) => {
     res.send({ message: "hello world"})
 })
 app.use('/api/classes', require('./routes/class.routes'))
+app.use('/api/students', require('./routes/student.routes'))
 
 
 const port = process.env.APP_PORT

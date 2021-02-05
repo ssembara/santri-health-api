@@ -30,7 +30,7 @@ module.exports = {
         unique: true
       },
       sex: Sequelize.DataTypes.STRING,
-      birthday: Sequelize.DataTypes.DATE,
+      birthday: Sequelize.DataTypes.DATEONLY,
       address: Sequelize.DataTypes.STRING,
       created_at: {
         type: Sequelize.DATE,
