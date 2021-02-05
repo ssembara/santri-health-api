@@ -3,6 +3,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Classes', {
+      id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true
+      },
       name: Sequelize.DataTypes.STRING,
       grade: Sequelize.DataTypes.INTEGER,
       created_at: {
@@ -13,7 +19,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       }
-
     });
   },
 
