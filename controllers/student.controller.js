@@ -1,8 +1,9 @@
 const { Class, Student } = require("../models");
+const moment = require('moment');
 
 
 exports.index = async (req, res) => {
-    const students = await Student.findAll({
+    let students = await Student.findAll({
         attributes: ['id', 'nis', 'name', 'sex', 'birthday', 'address', 'createdAt', 'updatedAt'],
         include: [
             {
@@ -10,8 +11,20 @@ exports.index = async (req, res) => {
                 as: 'class',
                 required: true
             }
-        ]
-    });
+        ],
+        raw: true,
+        nest: true,
+    })
+
+    students = students.map(obj => {
+        const now = moment();
+
+        let age = now.diff(moment(obj.birthday).format('YYYY'), 'years')
+        let newObj = Object.assign(obj, { age })
+
+        return newObj
+    })
+
     return res.json({
         code: 200,
         status: "success",
@@ -34,7 +47,7 @@ exports.store = async (req, res) => {
 
 exports.show = async (req, res) => {
     const { id } = req.params
-    students = await Student.findOne({
+    let students = await Student.findOne({
         attributes: ['id', 'nis', 'name', 'sex', 'birthday', 'address', 'createdAt', 'updatedAt'],
         where: { id },
         include: [
@@ -43,8 +56,15 @@ exports.show = async (req, res) => {
                 as: 'class',
                 required: true
             }
-        ]
+        ],
+        raw: true,
+        nest: true,
     });
+
+    const now = moment();
+
+    let age = now.diff(moment(students.birthday).format('YYYY'), 'years')
+    students = Object.assign(students, { age })
 
     return res.json({
         code: 200,
