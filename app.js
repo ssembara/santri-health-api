@@ -1,7 +1,7 @@
 const env = require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express')
-const morgan = require("morgan");
+// const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require('cors');
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
 // config
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 app.use(bodyParser.json({ limit: '50mb' }))
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(helmet())
 app.use(cors());
 
