@@ -25,7 +25,7 @@ app.use('/api/classes', require('./routes/class.routes'))
 app.use('/api/students', require('./routes/student.routes'))
 
 
-const port = process.env.APP_PORT
+const port = process.env.PORT || 3000
 app.listen(port, () => {
     console.log(`Server is running in ${port}`)
 })
