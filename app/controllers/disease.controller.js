@@ -2,12 +2,18 @@ const { Disease } = require("../models");
 
 
 exports.index = async (req, res) => {
-    const diseases = await Disease.findAll({});
-    return res.json({
-        code: 200,
-        status: "success",
-        data: diseases
-    })
+    try {
+        const diseases = await Disease.findAll({});
+        return res.json({
+            code: 200,
+            status: "success",
+            data: diseases
+        })
+    } catch (error) {
+        return res.send({
+            error
+        })
+    }
 }
 
 exports.store = async (req, res) => {
@@ -24,9 +30,8 @@ exports.store = async (req, res) => {
             data: diseases
         })
     } catch (error) {
-        return res.json({
+        return res.send({
             error
         })
     }
-
 }
