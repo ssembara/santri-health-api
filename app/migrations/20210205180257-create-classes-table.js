@@ -4,20 +4,20 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Classes', {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        type: Sequelize.INTEGER
       },
       name: Sequelize.DataTypes.STRING,
       grade: Sequelize.DataTypes.INTEGER,
       created_at: {
-        type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.DATE
       },
       updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },

@@ -4,10 +4,10 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Students', {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        type: Sequelize.INTEGER
       },
       class_id: {
         type: Sequelize.DataTypes.INTEGER,
@@ -33,12 +33,12 @@ module.exports = {
       birthday: Sequelize.DataTypes.DATEONLY,
       address: Sequelize.DataTypes.STRING,
       created_at: {
-        type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.DATE
       },
       updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.DATE
       }
 
     });
