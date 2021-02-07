@@ -21,8 +21,8 @@ app.use(express.static(__dirname + '/public'))
 app.get('/api', async (req, res) => {
     res.send({ message: "hello world"})
 })
-app.use('/api/classes', require('./routes/class.routes'))
-app.use('/api/students', require('./routes/student.routes'))
+app.use('/api/classes', require('./app/routes/class.routes'))
+app.use('/api/students', require('./app/routes/student.routes'))
 
 
 const port = process.env.PORT || 3000

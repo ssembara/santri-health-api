@@ -1,4 +1,4 @@
-const studentController = require('../controllers/student.controller')
+const studentController = require('../../app/controllers/student.controller')
 const express = require('express')
 const app = express.Router()
 
