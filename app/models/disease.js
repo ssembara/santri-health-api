@@ -20,13 +20,34 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false
     },
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    indication: DataTypes.JSON
+    name: {
+      type: DataTypes.STRING,
+      unique: true  
+    },
+    description: DataTypes.TEXT,
+    indicators: {
+      type: DataTypes.JSON,
+      // get: function () {
+      //   return JSON.parse(this.getDataValue('indicators'));
+      // },
+      // set: function (val) {
+      //   return this.setDataValue('indicators', JSON.stringify(val));
+      // }
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: "created_at"
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      field: "updated_at"
+    }
   }, {
     sequelize,
     modelName: 'Disease',
-    tableName: 'disease',
+    tableName: 'diseases',
     timestamps: true
   });
   return Disease;

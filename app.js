@@ -23,6 +23,7 @@ app.get('/api', async (req, res) => {
 })
 app.use('/api/classes', require('./app/routes/class.routes'))
 app.use('/api/students', require('./app/routes/student.routes'))
+app.use('/api/diseases', require('./app/routes/disease.routes'))
 
 
 const port = process.env.PORT || 3000

@@ -14,10 +14,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
-      indication: {
-        type: Sequelize.JSON
+      indicators: {
+        type: Sequelize.JSON,
       },
       created_at: {
         allowNull: false,
