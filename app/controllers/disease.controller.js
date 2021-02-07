@@ -35,3 +35,44 @@ exports.store = async (req, res) => {
         })
     }
 }
+
+exports.show = async (req, res) => {
+
+    try {
+        const { id } = req.params
+        const diseases = await Disease.findOne({
+            where: { id }
+        })
+        return res.json({
+            code: 200,
+            status: "success",
+            data: diseases
+        })
+    } catch (error) {
+        return res.send({
+            error
+        })
+    }
+}
+
+exports.destroy = async (req, res) => {
+
+    try {
+        const { id } = req.params
+        let status = null;
+        const diseases = await Disease.destroy({
+            where: { id }
+        })
+
+        (diseases) ? status = 'success' : null;
+        return res.json({
+            code: 201,
+            status: "success"
+        })
+    } catch (error) {
+        return res.json({
+            code: 201,
+            status: "data not found"
+        })
+    }
+}
