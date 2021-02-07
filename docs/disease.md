@@ -56,9 +56,9 @@ Response :
         "description": "string",
         "indicators": [],
         "createdAt": "datetime",
-        "updatedAt": "datetime""
+        "updatedAt": "datetime"
      },
-     {
+      {
         "id" : "number",
         "name": "string",
         "description": "string",
@@ -66,14 +66,14 @@ Response :
         "createdAt": "datetime",
         "updatedAt": "datetime"
      },
-     {
+      {
         "id" : "number",
         "name": "string",
         "description": "string",
         "indicators": [],
         "createdAt": "datetime",
         "updatedAt": "datetime"
-     }
+     },
    ]
 }
 ```
