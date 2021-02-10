@@ -109,7 +109,6 @@ exports.destroy = async (req, res) => {
         return res.json({
             code: 201,
             status: "success",
-            data: diseases
         })
 
     } catch (error) {

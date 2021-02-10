@@ -112,13 +112,13 @@ exports.update = async (req, res) => {
             })
         }
 
-        // students.classId = classId
-        // students.nis = nis
-        // students.name = name
-        // students.sex = sex
-        // students.birthday = birthday
-        // students.address = address
-        // students.save()
+        students.classId = classId
+        students.nis = nis
+        students.name = name
+        students.sex = sex
+        students.birthday = birthday
+        students.address = address
+        students.save()
 
         return res.json({
             code: 201,
@@ -135,10 +135,20 @@ exports.update = async (req, res) => {
 exports.destroy = async (req, res) => {
     try {
         const { id } = req.params
-        let students = await Student.destroy({
+        let students = await Student.findOne({
             where: { id }
         })
 
+        if (!students) {
+            return res.json({
+                code: 200,
+                status: "failed",
+                data: 'data not found'
+            })
+        }
+
+
+        students.destroy()
         return res.json({
             code: 201,
             status: "success",
