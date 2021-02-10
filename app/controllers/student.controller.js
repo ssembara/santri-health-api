@@ -119,6 +119,10 @@ exports.update = async (req, res) => {
             ]
         });
 
+        if (!students) {
+            students = 'data not found'
+        }
+
         return res.json({
             code: 201,
             status: "success",
