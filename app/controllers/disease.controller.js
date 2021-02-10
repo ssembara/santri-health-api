@@ -59,20 +59,28 @@ exports.destroy = async (req, res) => {
 
     try {
         const { id } = req.params
-        let status = null;
         const diseases = await Disease.destroy({
             where: { id }
         })
 
-        (diseases) ? status = 'success' : null;
+        if (diseases == 0) {
+            return res.json({
+                code: 201,
+                status: "data not found",
+                data: diseases
+            })
+        }
+
         return res.json({
             code: 201,
-            status: "success"
+            status: "success",
+            data: diseases
         })
+
     } catch (error) {
         return res.json({
-            code: 201,
-            status: "data not found"
+            code: 500,
+            error
         })
     }
 }
