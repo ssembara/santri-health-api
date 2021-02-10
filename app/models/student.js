@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.Student = this.belongsTo(models.Class, {
-        foreignKey: 'class_id',
+        foreignKey: 'classId',
         as: 'class'
       })
     }

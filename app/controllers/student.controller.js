@@ -5,7 +5,9 @@ const moment = require('moment');
 exports.index = async (req, res) => {
     try {
         let students = await Student.findAll({
-            attributes: ['id', 'nis', 'name', 'sex', 'birthday', 'address', 'createdAt', 'updatedAt'],
+            attributes: {
+                exclude: ['classId']
+            },
             include: [
                 {
                     model: Class,
@@ -98,30 +100,25 @@ exports.update = async (req, res) => {
     try {
         const { classId, nis, name, sex, birthday, address } = req.body
         const { id } = req.params
-        let students = await Student.update(
-            {
-                classId, nis, name, sex, birthday, address
-            },
-            {
-                where: { id }
-            }
-        )
-
-        students = await Student.findOne({
-            attributes: ['id', 'nis', 'name', 'sex', 'birthday', 'address', 'createdAt', 'updatedAt'],
-            where: { id },
-            include: [
-                {
-                    model: Class,
-                    as: 'class',
-                    required: true
-                }
-            ]
-        });
+        const students = await Student.findOne({
+            where: { id }
+        })
 
         if (!students) {
-            students = 'data not found'
+            return res.json({
+                code: 200,
+                status: "failed",
+                data: 'data not found'
+            })
         }
+
+        // students.classId = classId
+        // students.nis = nis
+        // students.name = name
+        // students.sex = sex
+        // students.birthday = birthday
+        // students.address = address
+        // students.save()
 
         return res.json({
             code: 201,
