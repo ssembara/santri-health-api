@@ -60,25 +60,25 @@ exports.update = async (req, res) => {
     try {
         const { id } = req.params
         const { name, description, indicators } = req.body
-        const diseases = await Disease.update(
-            {
-                name, description, indicators
-            },
-            {
-                where: { id }
-            }
-        )
+        const diseases = await Disease.findOne({
+            where: { id }
+        })
 
-        if (diseases == 0) {
+        if (!diseases) {
             return res.json({
-                code: 201,
-                status: "data not found",
-                data: diseases
+                code: 200,
+                status: "failed",
+                data: 'data not found'
             })
         }
 
+        diseases.name = name
+        diseases.description = description
+        diseases.indicators = indicators
+        diseases.save();
+
         return res.json({
-            code: 200,
+            code: 201,
             status: "success",
             data: diseases
         })
@@ -93,18 +93,19 @@ exports.destroy = async (req, res) => {
 
     try {
         const { id } = req.params
-        const diseases = await Disease.destroy({
+        const diseases = await Disease.findOne({
             where: { id }
         })
 
-        if (diseases == 0) {
+        if (!diseases) {
             return res.json({
-                code: 201,
-                status: "data not found",
-                data: diseases
+                code: 200,
+                status: "failed",
+                data: 'data not found'
             })
         }
 
+        diseases.destroy()
         return res.json({
             code: 201,
             status: "success",
