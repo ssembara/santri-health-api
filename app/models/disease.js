@@ -27,12 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     indicators: {
       type: DataTypes.JSON,
-      // get: function () {
-      //   return JSON.parse(this.getDataValue('indicators'));
-      // },
-      // set: function (val) {
-      //   return this.setDataValue('indicators', JSON.stringify(val));
-      // }
     },
     createdAt: {
       type: DataTypes.DATE,
